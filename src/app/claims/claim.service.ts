@@ -28,12 +28,12 @@ export class ClaimService {
     return this.httpClient.get<ClaimTypes[]>(route).pipe(catchError(this.handleError));
   }
 
-  addClaim(claim: any) : Observable<string>  {     
+  addClaim(claim: any) : Observable<any>  {     
     const route = this.httpRouteGetter.httpRoute + 'claims/addClaim';    
-    return this.httpClient.post<string>(route, claim ).pipe(catchError(this.handleError));
+    return this.httpClient.post<any>(route, claim ).pipe(catchError(this.handleError));
   }
 
-  deleteClaim(claimId: number) : Observable<string>  {     
+  deleteClaim(claimId: string) : Observable<string>  {     
     const route = this.httpRouteGetter.httpRoute + 'claims/deleteClaim/' + claimId;    
     return this.httpClient.delete<string>(route).pipe(catchError(this.handleError));
   }

@@ -1,5 +1,5 @@
 export class Claims {
-    id: number = 0;
+    id: string = "";
     year: number = 0;
     name: string = "";
     type: string = "";

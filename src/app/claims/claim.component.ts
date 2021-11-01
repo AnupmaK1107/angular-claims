@@ -8,7 +8,8 @@ import { FormControl, Validators, FormGroup, FormBuilder, FormArray } from '@ang
 @Component({
     selector: 'app-claim',
     templateUrl: './claim.component.html',
-    styleUrls: ['./claim.component.css']
+    styleUrls: ['./claim.component.css'],
+    providers: [ClaimService]
   })
 
   export class ClaimComponent implements OnInit {
@@ -36,6 +37,7 @@ import { FormControl, Validators, FormGroup, FormBuilder, FormArray } from '@ang
       ngOnInit() {
         this.getClaimTypes();
         this.getClaimsList();
+        this.createValidation();
       }
 
       createValidation() {
@@ -68,11 +70,11 @@ import { FormControl, Validators, FormGroup, FormBuilder, FormArray } from '@ang
         });        
       }
 
-      deleteClaim(claimId:number) {
+      deleteClaim(claimId:string) {
         this.claimService.deleteClaim(claimId).subscribe(res => {  
           if(res != undefined)
           {        
-          window.alert("test");
+          this.getClaimsList();
           }
         });        
       }
@@ -91,7 +93,7 @@ import { FormControl, Validators, FormGroup, FormBuilder, FormArray } from '@ang
         this.claimService.addClaim(this.claimToAdd).subscribe(res => {
             if(res != undefined)
             {
-                window.alert(res); 
+                this.getClaimsList(); 
             }
         });
       }
